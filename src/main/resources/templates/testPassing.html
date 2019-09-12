@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Person List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1 th:utext="${topic}"/>
+        <form th:action = "@{/processTest(name=${topic})}" th:object = "${output}" method="post">
+
+        <ul th:each="t : ${Test}">
+            <li th:utext="${t.quest}" ></li>
+            <ul th:each="q : ${t.options}" >
+                <input th:type="checkbox" th:name="${t.quest}" th:field="*{result}" th:value="${q}" >
+                <label  th:text="${q}"></label>
+                <!--<input th:type="radio"  th:name="${t.quest}"  th:utext="${q}">
+                <label th:for="${#ids.prev('output')}" th:text="#{${'seedstarter.type.' + q}}">Wireframe</label>-->
+            </ul>
+         </ul>
+         <p><input type="submit" value="Отправить"></p>
+        </form>
+
+
+ </body>
+ </html>
